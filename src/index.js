@@ -6,20 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import ErrorPage from './commons/pages/Error';
+import { UserInfoProvider } from './member/modules/UserInfoContext';
+
 import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {' '}
-    {/* <...>컴포넌트 형태로 감싸기</...> */}
-    <ErrorPage>
-      <HelmetProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </HelmetProvider>
-    </ErrorPage>
+    <UserInfoProvider>
+      {/* <...>컴포넌트 형태로 감싸기</...> */}
+      <ErrorPage>
+        <HelmetProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </HelmetProvider>
+      </ErrorPage>
+    </UserInfoProvider>
   </React.StrictMode>,
 );
 
