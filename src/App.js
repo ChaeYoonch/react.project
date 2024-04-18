@@ -8,12 +8,18 @@ const Main = loadable(() => import('./main/pages/Main')); // 메인페이지
 /* 회원 페이지 S */
 const Join = loadable(() => import('./member/pages/Join'));
 const Login = loadable(() => import('./member/pages/Login'));
+
 /* 회원 페이지 E */
+
+/* 마이페이지 S */
+const MypageMain = loadable(() => import('./mypage/pages/MypageMain'));
+/* 마이페이지 E */
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
+        {' '}
         {/* path="/" 는 생략 가능*/}
         <Route index element={<Main />} /> {/* 메인 페이지 */}
         {/* 회원 페이지 S */}
@@ -22,6 +28,11 @@ const App = () => {
           <Route path="Login" element={<Login />} />
         </Route>
         {/* 회원 페이지 E */}
+        {/* 마이페이지 S */}
+        <Route path="mypage">
+          <Route index element={<MypageMain />} />
+        </Route>
+        {/* 마이페이지 E */}
         <Route path="*" element={<NotFound />} /> {/* 없는 페이지 */}
       </Route>
     </Routes>
