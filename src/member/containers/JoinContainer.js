@@ -46,7 +46,11 @@ const JoinContainer = () => {
 
       for (const [field, msg] of Object.entries(requiredFields)) {
         // !form[field] - null, undifined, ''체크, !form[field].trim() - '     '
-        if (!form[field] || (form[field] && !form[field].trim())) {
+        if (
+          !form[field] ||
+          (typeof form[field] === 'string' && !form[field].trim())
+        ) {
+          // trim : 공백 제거 | 공백도 문자로 인식하기 때문에
           _errors[field] = _errors[field] || [];
           _errors[field].push(msg);
           hasErrors = true;
@@ -82,7 +86,7 @@ const JoinContainer = () => {
 
   const onChange = useCallback((e) => {
     const name = e.target.name;
-    const value = e.target.value.trim;
+    const value = e.target.value.trim();
     setForm((form) => ({ ...form, [name]: value }));
   }, []);
 
